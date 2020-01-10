@@ -1,10 +1,10 @@
 # spark-training
 一个大数据的例子-SPARK实现 （简书链接：https://www.jianshu.com/p/8d9efad41053）
 
-## 3.使用Spark解决
+## 1.使用Spark解决
 spark源码是由scala语言进行编码的，Spark任务是使用scala语言进行编写，
 没有scala语言基础的同学，需要对scala有一定的了解，才能更好的完成。
-### 3.1 编写
+### 1.1 编写
 ```
 def main(args: Array[String]): Unit = { 
     val spark = SparkSession
@@ -35,7 +35,7 @@ def main(args: Array[String]): Unit = { 
 
 使用RDD的方式，执行思路与Hadoop的思路基本一致。使用逗号分割获取第一学期的成绩，使用&分割，获取数学成绩，判断数据成绩是否大于等于60，如果满足，则生成（"Math_Score_Pass"，1），否则，生成（"Math_Score_Not_Pass",1），然后使用reduceByKey将所有的结果进行累加，最后保存到HDFS的指定目录。
 
-### 3.2 执行
+### 1.2 执行
 ```
     spark-submit \
     --master local \
@@ -43,7 +43,7 @@ def main(args: Array[String]): Unit = { 
     original-spark-training-1.0-SNAPSHOT.jar \
     /data/student /data/spark/studentscore/
 ```
-### 3.3 查看执行结果
+### 1.3 查看执行结果
 查看 hdfs结果结果目录：:
 ```
     hdfs dfs -ls /data/spark/studentscore/
@@ -70,5 +70,5 @@ def main(args: Array[String]): Unit = { 
 其中defaultMinPartitions为定义的默认分区数：
 ![defaultMinPartitions 参数](images/defaultMinPartitions.png)
 
-### 3.4 参考文献
+### 1.4 参考文献
 [1]. [spark中saveAsTextFile如何最终生成一个文件](https://blog.csdn.net/qq_26803795/article/details/81543008)
