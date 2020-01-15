@@ -1,0 +1,4 @@
+China|CN
+Hong Kong|HK
+Macao|MO
+Taiwan|TW
