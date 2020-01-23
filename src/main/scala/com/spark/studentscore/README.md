@@ -2,7 +2,8 @@
 一个大数据的例子-SPARK实现 （简书链接：https://www.jianshu.com/p/8d9efad41053）
 ## 数据
 ### 原始数据
-![原始数据](images/data.png)
+![原始数据](https://upload-images.jianshu.io/upload_images/4285728-9e2765e30fabb156.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ### 数据说明
     数据按照逗号（,）分割，每列数据说明如下：
     
@@ -66,31 +67,29 @@ def main(args: Array[String]): Unit = { 
     /data/student /data/spark/studentscore/
 ```
 ### 1.3 查看执行结果
-查看 hdfs结果结果目录：:
+查看 hdfs结果结果目录：
 ```
     hdfs dfs -ls /data/spark/studentscore/
 ```
-![HDFS结果](images/resultDir.png)
-
+![HDFS结果](https://upload-images.jianshu.io/upload_images/4285728-5409346f09f776a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 查看HDFS结果内容：
 ```
     hdfs dfs -cat /data/spark/studentscore/par*
 ```
-![HDFS结果内容](images/sparkResult.png)
+![HDFS结果内容](https://upload-images.jianshu.io/upload_images/4285728-15b5a8d3427537fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 在结果目录中，发现产生了2个part-0000* 的文件，我们要看一下 具体是什么原因产生的：
 查阅相关资料，发现从hdfs中读取文件，源码默认的分区数是2，分区数决定最终的结果
 >在默认的textfile中，如果从hdfs中读取文件，源码中默认的分区数是2，如果想改变分区数，可以在textfile中设置第二个参数“分区数”
 
 查看textFile源码
-![textFile源码](images/textFile.png)
-
+![textFile源码](https://upload-images.jianshu.io/upload_images/4285728-b1ba0067fa242fb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 查看hadoopFile源码
-![hadoopFile源码](images/hadoopFile.png)
+![hadoopFile源码](https://upload-images.jianshu.io/upload_images/4285728-70a595b84fa1436c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 其中defaultMinPartitions为定义的默认分区数：
-![defaultMinPartitions 参数](images/defaultMinPartitions.png)
+![defaultMinPartitions 参数](https://upload-images.jianshu.io/upload_images/4285728-5ef8feee7984eddf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 1.4 参考文献
 [1]. [spark中saveAsTextFile如何最终生成一个文件](https://blog.csdn.net/qq_26803795/article/details/81543008)
