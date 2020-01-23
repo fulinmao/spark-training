@@ -278,5 +278,4 @@ spark-submit  \
 
 ## 7.参考文献
 
-1.  (Spark性能优化之道——解决Spark数据倾斜（Data Skew）的N种姿势)[
-http://www.jasongj.com/spark/skew/]
+1. ![Spark性能优化之道——解决Spark数据倾斜（Data Skew）的N种姿势](http://www.jasongj.com/spark/skew/)
