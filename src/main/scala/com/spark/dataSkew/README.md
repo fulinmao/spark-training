@@ -275,10 +275,8 @@ spark-submit  \
 * * *
 ![opt job 4.png](https://upload-images.jianshu.io/upload_images/4285728-02096ba56348698f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 * * *
-## 源码
-github源码：
 
- ## 7.参考文献
+## 7.参考文献
 
 1.  (Spark性能优化之道——解决Spark数据倾斜（Data Skew）的N种姿势)[
 http://www.jasongj.com/spark/skew/]
