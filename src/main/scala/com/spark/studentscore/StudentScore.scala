@@ -1,4 +1,4 @@
-package com.spark
+package com.spark.studentscore
 
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession

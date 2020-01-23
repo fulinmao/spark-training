@@ -1,27 +1,26 @@
-package com.spark
+package com.spark.dataSkew
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
 import scala.collection.mutable
-import scala.util.Random
 
 /**
- * @title: DataSkewBasic
+ * @title: DataSkewOptimization
  * @projectName spark-training
  * @description: 数据大数据倾斜的一个方法
  * @author 毛福林
  * @date 2020/1/1414:15
  */
-object DataSkewBasic {
+object DataSkewOptimization {
   def main(args: Array[String]): Unit = {
     val randomCount = 10
 
     //1.创建sparkContext上下文
     var spark = SparkSession
       .builder()
-      .appName("spark data skew basic example")
-      .config("spark.master", "local[2]")
+      .appName("spark data skew optimization example")
+//      .config("spark.master", "local[2]")
       .getOrCreate()
 
     //2.读取数据
@@ -58,13 +57,13 @@ object DataSkewBasic {
       .filter(!_._1.equals(sortRDD))
       .map(ipInfo => (ipInfo._1, ipInfo._2))
 
-    println("====================ipMostKeyRdd start ===========")
-    ipMostKeyRdd.collect().foreach(println)
-    println("====================ipMostKeyRdd end  ===========")
-
-    println("====================ipNomarlRdd start ===========")
-    ipNomarlRdd.collect().foreach(println)
-    println("====================ipNomarlRdd end  ===========")
+//    println("====================ipMostKeyRdd start ===========")
+//    ipMostKeyRdd.collect().foreach(println)
+//    println("====================ipMostKeyRdd end  ===========")
+//
+//    println("====================ipNomarlRdd start ===========")
+//    ipNomarlRdd.collect().foreach(println)
+//    println("====================ipNomarlRdd end  ===========")
 
 
     // 5.获取国家/地区简称
@@ -91,13 +90,13 @@ object DataSkewBasic {
       .filter(!_._1.equals(sortRDD))
       .map(line => (line._1,line._2))
 
-    println("====================countryMostRdd start ===========")
-    countryMostRdd.collect().foreach(println)
-    println("====================countryMostRdd end  ===========")
-
-    println("====================countryNormalKeyRdd start ===========")
-    countryNormalKeyRdd.collect().foreach(println)
-    println("====================countryNormalKeyRdd end  ===========")
+//    println("====================countryMostRdd start ===========")
+//    countryMostRdd.collect().foreach(println)
+//    println("====================countryMostRdd end  ===========")
+//
+//    println("====================countryNormalKeyRdd start ===========")
+//    countryNormalKeyRdd.collect().foreach(println)
+//    println("====================countryNormalKeyRdd end  ===========")
 
     //8.对数据集进行join操作
 
@@ -107,9 +106,9 @@ object DataSkewBasic {
       .join(countryMostRdd)
         .map(line => (line._2._1,line._2._2))
         .map(line => line._1 +"|"+line._2)
-    println("====================resultMostRdd start ===========")
-    resultMostRdd.collect().foreach(println)
-    println("====================resultMostRdd end  ===========")
+//    println("====================resultMostRdd start ===========")
+//    resultMostRdd.collect().foreach(println)
+//    println("====================resultMostRdd end  ===========")
 
     //    val resultMost = resultMostRdd
     //8.2 将数据量小的key 进行join
@@ -118,9 +117,9 @@ object DataSkewBasic {
           .join(countryNormalKeyRdd)
           .map(line =>line._2._1+"|"+line._2._2)
 
-    println("====================resultNormalRdd start  ===========")
-    resultNormalRdd.collect().foreach(println)
-    println("====================resultNormalRdd end  ===========")
+//    println("====================resultNormalRdd start  ===========")
+//    resultNormalRdd.collect().foreach(println)
+//    println("====================resultNormalRdd end  ===========")
 
     //9 将所有结果合并(union)
     var result = resultMostRdd.union(resultNormalRdd)
